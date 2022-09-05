@@ -19,13 +19,11 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "http://127.0.0.1:11000",
-        // target: "http://152.69.194.37:11000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
       "/img/": {
-        // target: "http://127.0.0.1:11000",
-        target: "http://152.69.194.37:10000/",
+        target: "http://127.0.0.1:11000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/img/, ""),
       },
