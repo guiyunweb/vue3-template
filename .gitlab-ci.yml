@@ -1,0 +1,34 @@
+# 指定脚本执行的镜像环境，如下为node环境为14.17.1
+image: node:14.17.1
+
+# 单个job执行之前执行
+before_script:
+  - echo '====== 准备构建中 ========='
+
+# 配置单个stage的执行顺序，串行
+stages:
+  - install
+  - build
+
+# 单个stage配置
+# 安装依赖
+npm_install:
+  only:
+    - master
+  stage: install
+  script:
+    - yarn
+    - ls -al
+
+# 单个stage配置
+# 构建
+webpack_build:
+  only:
+    - master
+  stage: build
+  script:
+    - yarn build
+
+# 单个job全部执行完之后执行
+after_script:
+  - echo "====== 构建结束 ========="
